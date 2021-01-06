@@ -3,7 +3,8 @@ import MessageInput from "../components/MessageInput.js";
 import Message from "../components/Message.js";
 
 export default function Home() {
-	fetch("/api/hello")
+	console.log(window.location.origin);
+	fetch(window.location.origin + "/api/posts") //make absolute url, maybe with env variable?
 		.then((response) => response.json())
 		.then((data) => console.log(data));
 	return (
