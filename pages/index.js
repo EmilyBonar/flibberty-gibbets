@@ -4,6 +4,7 @@ import Message from "../components/Message.js";
 import { server } from "../config/index.js";
 
 export default function Home() {
+	console.log(server);
 	fetch(`${server}/api/posts`) //make absolute url, maybe with env variable?
 		.then((response) => response.json())
 		.then((data) => console.log(data));
