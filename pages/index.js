@@ -1,10 +1,10 @@
 import Head from "next/head";
 import MessageInput from "../components/MessageInput.js";
 import Message from "../components/Message.js";
+import { server } from "../config/index.js";
 
 export default function Home() {
-	console.log(window.location.origin);
-	fetch(window.location.origin + "/api/posts") //make absolute url, maybe with env variable?
+	fetch(`${server}/api/posts`) //make absolute url, maybe with env variable?
 		.then((response) => response.json())
 		.then((data) => console.log(data));
 	return (
