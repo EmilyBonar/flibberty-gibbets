@@ -7,5 +7,9 @@ export default async function handle(req, res) {
 		post.author = post.author.name;
 		return post;
 	});
+	res.setHeader(
+		"Cache-Control",
+		"public, max-age=120, stale-while-revalidate=60",
+	);
 	res.json(correctedPosts);
 }
