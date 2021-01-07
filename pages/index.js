@@ -9,8 +9,14 @@ export default function Home() {
 	fetch(`${server}/api/posts`) //happens very quickly, might need to rate limit somehow
 		.then((response) => response.json())
 		.then((data) => {
-			setPosts(data);
+			setPosts(
+				data.map((message) => {
+					message.createdAt = new Date(message.createdAt);
+					return message;
+				}),
+			);
 		});
+	console.log(posts);
 	return (
 		<div>
 			<Head>
@@ -19,9 +25,16 @@ export default function Home() {
 			</Head>
 			<div className="w-4/5 m-auto">
 				<MessageInput />
-				{posts.map((post) => (
-					<Message key={post.id} name={post.userName} text={post.content} />
-				))}
+				{posts
+					.sort((a, b) => b.createdAt - a.createdAt)
+					.map((post) => (
+						<Message
+							key={post.id}
+							name={post.userName}
+							text={post.content}
+							time={post.createdAt}
+						/>
+					))}
 			</div>
 		</div>
 	);
