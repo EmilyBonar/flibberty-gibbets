@@ -1,13 +1,16 @@
 import Head from "next/head";
-import MessageInput from "../components/MessageInput.js";
-import Message from "../components/Message.js";
-import Logo from "../components/Logo.js";
-import { server } from "../config/index.js";
+import MessageInput from "../../components/MessageInput.js";
+import Message from "../../components/Message.js";
+import Logo from "../../components/Logo.js";
+import { server } from "../../config/index.js";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
-export default function Home() {
+const User = () => {
 	const [posts, setPosts] = useState([]);
-	fetch(`${server}/api/posts`) //happens very quickly, might need to rate limit somehow
+	const router = useRouter();
+	const { userName } = router.query;
+	fetch(`${server}/api/users/${userName}`) //happens very quickly, might need to rate limit somehow
 		.then((response) => response.json())
 		.then((data) => {
 			setPosts(
@@ -27,7 +30,6 @@ export default function Home() {
 
 			<div className="w-4/5 m-auto">
 				<Logo />
-				<MessageInput />
 				<div className="my-4">
 					{posts
 						.sort((a, b) => b.createdAt - a.createdAt)
@@ -43,4 +45,6 @@ export default function Home() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default User;
