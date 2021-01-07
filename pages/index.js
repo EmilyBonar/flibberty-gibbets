@@ -8,7 +8,10 @@ export default function Home() {
 	const [posts, setPosts] = useState([]);
 	fetch(`${server}/api/posts`) //happens very quickly, might need to rate limit somehow
 		.then((response) => response.json())
-		.then((data) => setPosts(data));
+		.then((data) => {
+			console.log(data);
+			setPosts(data);
+		});
 	return (
 		<div>
 			<Head>
