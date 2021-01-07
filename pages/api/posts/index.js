@@ -3,10 +3,7 @@ import { prisma } from "../_base";
 
 export default async function handle(req, res) {
 	const posts = await prisma.post.findMany();
-	console.log(posts);
-	res.setHeader(
-		"Cache-Control",
-		"public, max-age=120, stale-while-revalidate=60",
-	);
+	//console.log(posts);
+	res.setHeader("Cache-Control", "public, max-age=0, stale-while-revalidate=1");
 	res.json(posts);
 }

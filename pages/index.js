@@ -15,8 +15,8 @@ export default function Home() {
 					return message;
 				}),
 			);
-		});
-	console.log(posts);
+		})
+		.catch((error) => console.error("ReadError", error));
 	return (
 		<div>
 			<Head>
