@@ -17,5 +17,3 @@ if (process.env.NODE_ENV === "production") {
 	prisma = global.prisma;
 	prismaWrite = global.prismaWrite;
 }
-
-//export default prisma;
