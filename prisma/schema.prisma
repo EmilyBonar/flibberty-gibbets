@@ -12,13 +12,14 @@ generator client {
 
 model User {
   id    Int @id @default(autoincrement())
-  name  String
+  name  String @unique
   posts Post[]
 }
 
 model Post {
   id        Int @id @default(autoincrement())
   createdAt DateTime @default(now())
-  author    User
   content   String 
+  author    User
+  
 }
