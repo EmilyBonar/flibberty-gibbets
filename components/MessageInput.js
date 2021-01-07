@@ -2,7 +2,7 @@ import { server } from "../config/index.js";
 
 export default function MessageInput() {
 	return (
-		<form className="my-2" onSubmit={(e) => postMessage(e)}>
+		<form className="my-4" onSubmit={(e) => postMessage(e)}>
 			<textarea
 				required
 				id="text"

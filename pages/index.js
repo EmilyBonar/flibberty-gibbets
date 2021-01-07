@@ -1,6 +1,7 @@
 import Head from "next/head";
 import MessageInput from "../components/MessageInput.js";
 import Message from "../components/Message.js";
+import Logo from "../components/Logo.js";
 import { server } from "../config/index.js";
 import { useState } from "react";
 
@@ -23,7 +24,9 @@ export default function Home() {
 				<title>Not Twitter</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+
 			<div className="w-4/5 m-auto">
+				<Logo />
 				<MessageInput />
 				{posts
 					.sort((a, b) => b.createdAt - a.createdAt)
