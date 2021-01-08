@@ -20,5 +20,4 @@ model Post {
   createdAt DateTime @default(now())
   content   String 
   author    User
-  
 }
