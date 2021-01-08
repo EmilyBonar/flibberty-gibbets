@@ -5,19 +5,15 @@ import { server } from "../../config/index.js";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-const User = () => {
+const Post = () => {
 	const [posts, setPosts] = useState([]);
 	const router = useRouter();
-	const { userName } = router.query;
-	fetch(`${server}/api/users/${userName}`) //happens very quickly, might need to rate limit somehow
+	const { postID } = router.query;
+	fetch(`${server}/api/posts/${postID}`) //happens very quickly, might need to rate limit somehow
 		.then((response) => response.json())
 		.then((data) => {
-			setPosts(
-				data.map((message) => {
-					message.createdAt = new Date(message.createdAt);
-					return message;
-				}),
-			);
+			data.createdAt = new Date(data.createdAt);
+			setPosts([data]);
 		})
 		.catch((error) => console.error("ReadError", error));
 	return (
@@ -30,20 +26,18 @@ const User = () => {
 			<div className="w-4/5 m-auto">
 				<Logo />
 				<div className="my-4">
-					{posts
-						.sort((a, b) => b.createdAt - a.createdAt)
-						.map((post) => (
-							<Message
-								key={post.id}
-								name={post.userName}
-								text={post.content}
-								time={post.createdAt}
-							/>
-						))}
+					{posts.map((post) => (
+						<Message
+							key={post.id}
+							name={post.userName}
+							text={post.content}
+							time={post.createdAt}
+						/>
+					))}
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default User;
+export default Post;
