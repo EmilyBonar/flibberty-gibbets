@@ -29,6 +29,7 @@ const Post = () => {
 					{posts.map((post) => (
 						<Message
 							key={post.id}
+							postID={post.id}
 							name={post.userName}
 							text={post.content}
 							time={post.createdAt}

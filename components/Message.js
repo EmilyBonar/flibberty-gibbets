@@ -11,11 +11,11 @@ export default function Message(props) {
 				))}
 			</div>
 			<div className="flex">
-				<Link href={`./user/${props.name}`}>
+				<Link href={`../user/${props.name}`}>
 					<a>{props.name}</a>
 				</Link>
 				<p className="flex-1"></p>
-				<Link href={`./post/${props.postID}`}>
+				<Link href={`../post/${props.postID}`}>
 					<a>{time}</a>
 				</Link>
 			</div>
