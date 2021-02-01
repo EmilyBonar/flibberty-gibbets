@@ -1,6 +1,6 @@
 # Flibberty Gibbets
 
-Flibberty Gibbets is a asychronous message posting service, similar to Twitter.
+Flibberty Gibbets is a asynchronous message posting service, similar to Twitter.
 
 ## Getting Started
 
