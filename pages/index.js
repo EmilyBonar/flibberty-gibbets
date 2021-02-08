@@ -19,7 +19,7 @@ export default function Home() {
 		})
 		.catch((error) => console.error("ReadError", error));
 	return (
-		<div>
+		<div className="bg-gray-100">
 			<Head>
 				<title>Not Twitter</title>
 				<link rel="icon" href="/favicon.ico" />

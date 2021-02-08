@@ -7,11 +7,16 @@ export default function MessageInput() {
 				required
 				id="text"
 				placeholder="Enter your message"
-				className="w-full p-2 border-2 border-black"
+				className="w-full p-2 placeholder-gray-600 border-2 border-gray-700 shadow"
 			></textarea>
 			<div className="flex">
-				<input required id="name" placeholder="Name"></input>
-				<div className="flex-1"></div>
+				<input
+					required
+					id="name"
+					placeholder="Enter your name"
+					className="text-gray-800 placeholder-gray-600 bg-gray-100"
+				></input>
+				<span className="flex-1"></span>
 				<button type="submit">Send Message</button>
 			</div>
 		</form>
