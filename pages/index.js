@@ -3,21 +3,27 @@ import MessageInput from "../components/MessageInput.js";
 import Message from "../components/Message.js";
 import Logo from "../components/Logo.js";
 import { server } from "../config/index.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 	const [posts, setPosts] = useState([]);
-	fetch(`${server}/api/posts`) //happens very quickly, might need to rate limit somehow
-		.then((response) => response.json())
-		.then((data) => {
-			setPosts(
-				data.map((message) => {
-					message.createdAt = new Date(message.createdAt);
-					return message;
-				}),
-			);
-		})
-		.catch((error) => console.error("ReadError", error));
+	const fetchPosts = () => {
+		fetch(`${server}/api/posts`)
+			.then((response) => response.json())
+			.then((data) => {
+				setPosts(
+					data.map((message) => {
+						message.createdAt = new Date(message.createdAt);
+						return message;
+					}),
+				);
+			})
+			.catch((error) => console.error("ReadError", error));
+	};
+	useEffect(() => {
+		fetchPosts(); //fetch on page load
+		setInterval(fetchPosts, 500); //fetch twice every second
+	}, []);
 	return (
 		<div className="bg-gray-100">
 			<Head>

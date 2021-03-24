@@ -24,6 +24,5 @@ function runMiddleware(req, res, fn) {
 export default async function handle(req, res) {
 	await runMiddleware(req, res, cors);
 	const posts = await prisma.post.findMany();
-	res.setHeader("Cache-Control", "public, max-age=0, stale-while-revalidate=1");
 	res.json(posts);
 }
