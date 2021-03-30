@@ -7,18 +7,19 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
 	const [posts, setPosts] = useState([]);
-	const fetchPosts = () => {
-		fetch(`${server}/api/posts`)
-			.then((response) => response.json())
-			.then((data) => {
-				setPosts(
-					data.map((message) => {
-						message.createdAt = new Date(message.createdAt);
-						return message;
-					}),
-				);
-			})
-			.catch((error) => console.error("ReadError", error));
+	const fetchPosts = async () => {
+		try {
+			let response = await fetch(`${server}/api/posts`);
+			let data = await response.json();
+			setPosts(
+				data.map((message) => {
+					message.createdAt = new Date(message.createdAt);
+					return message;
+				}),
+			);
+		} catch (error) {
+			console.error("ReadError", error);
+		}
 	};
 	useEffect(() => {
 		fetchPosts(); //fetch on page load
